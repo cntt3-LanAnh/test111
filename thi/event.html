@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .cart {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        h3 {
+            margin: 3px;
+
+        }
+
+        hr {
+            height: 4px;
+            margin-bottom: 0;
+            border: none;
+            background-color: #1d63f0;
+        }
+
+
+        table {
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        #add-product {
+            display: none;
+        }
+
+        .section-notification {
+            width: 100%;
+            height: 40px;
+            background-color: #f0f1f2;
+        }
+
+        .section-notification p {
+            float: left;
+            height: 100%;
+            margin-top: 0;
+            margin-left: 20px;
+            padding: 5px;
+        }
+
+        .section-notification button {
+            float: right;
+            height: 30px;
+            margin-top: 5px;
+            margin-right: 60px;
+            padding: 7px;
+
+            color: white;
+            background-color: #ed6339;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .section-product {
+            margin-bottom: 50px;
+        }
+
+        .product-table {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-table tr,
+        .product-table td {
+            border: 1px solid black;
+        }
+
+        .product-table thead tr {
+            width: 100%;
+            height: 40px;
+            color: white;
+            background-color: black;
+        }
+
+
+        .product-table tr td:first-child {
+            width: 5%;
+        }
+
+        .product-table tr td:not(:first-child) {
+            width: 18%;
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 60px;
+            max-height: 60px;
+            overflow: hidden;
+        }
+
+        .product-image-container img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: 60px;
+            object-position: center;
+            object-fit: cover;
+        }
+
+
+
+        .section-product button {
+            float: right;
+            height: 30px;
+            margin-top: 5px;
+            padding: 7px;
+
+            color: white;
+            background-color: #646cf5;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .section-product::after {
+            content: " ";
+            display: block;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .section-total {
+            float: right;
+            width: 30%;
+        }
+
+        .section-total table {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+
+        .section-total button {
+            width: 100%;
+            height: 30px;
+            margin-top: 5px;
+            padding: 7px;
+
+            color: white;
+            background-color: #646cf5;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .total-table tr {
+            border: 2px solid #dedee0;
+        }
+
+        .total-table tr td:first-child {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .total-table tr td:last-child {
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .total-table td {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="cart">
+        <div id="add-product">
+            <form action="#" name="frm">
+                <label for="">Ten san pham</label>
+                <input type="text" name="productname" required>
+                <label for="">Gia </label>
+                <input type="number" name="price" required>
+                <label for="">So luong</label>
+                <input type="number" name="quantity" required>
+                <label for="">Hinh anh</label>
+                <input type="url" name="url" required>
+                <button type="button" onclick="addProduct()">Them san pham</button>
+            </form>
+        </div>
+
+        <h3>Gio hang</h3>
+        <hr>
+        <div class="section-notification">
+            <p id="notification">&nbsp;</p><button>Tiep tuc xem gio hang</button>
+        </div>
+        <br><br>
+        <div class="section-product">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>San pham</th>
+                        <th>Gia</th>
+                        <th>So luong</th>
+                        <th>Tong</th>
+                    </tr>
+                </thead>
+                <tbody id="productList">
+                </tbody>
+            </table>
+            <button onclick="displayAddProductForm()">Cap nhat gio hang</button>
+        </div>
+        <div class="section-total">
+            <p>Cong gio hang</p>
+            <table class="total-table">
+                <tbody>
+                    <tr>
+                        <td>Tam tinh</td>
+                        <td id="displayTempTotal">0</td>
+                    </tr>
+                    <tr>
+                        <td>Tong</td>
+                        <td id="displayTotal">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button>Tien hanh thanh toan</button>
+        </div>
+    </div>
+
+
+    <script>
+        var addProductForm = document.getElementById("add-product");
+        var notification = document.getElementById("notification");
+        var displayProductList = document.getElementById("productList");
+        var displayTempTotal = document.getElementById("displayTempTotal");
+        var displayTotal = document.getElementById("displayTotal");
+
+        var id = 0;
+        var total = 0;
+        var productList = {};
+
+        function displayAddProductForm() {
+            addProductForm.style.display = "block";
+        }
+
+        function createProductRow(imgUrl, name, price, quantity) {
+            id++;
+
+            var newRow = `
+            <tr>
+                <td>${id}</td>
+                <td><div class="product-image-container"><img src="${imgUrl}" alt="Product image"></div></td>
+                <td>${name}</td>
+                <td>${price}</td>
+                <td><input type="number" value=${quantity} id="${name}" onkeyup="updateTotal(this)"></td>
+                <td>${price * quantity}</td>
+            </tr>
+            `
+
+            return newRow;
+        }
+
+        function addProduct() {
+            var name = frm.productname.value;
+            var price = frm.price.value;
+            var quantity = frm.quantity.value;
+            var url = frm.url.value;
+
+            var newRow = createProductRow(url, name, price, quantity);
+
+            if (!(name in productList)) {
+                productList[name] = { "quantity": quantity, "price": price };
+                total += price * quantity;
+
+                notification.textContent = `"${name}" da duoc them vao gio hang`;
+                displayTempTotal.textContent = total;
+                displayTotal.textContent = total;
+                displayProductList.innerHTML += newRow;
+            }
+            else {
+                notification.textContent = `"${name}" da co trong gio hang`;
+            }
+
+            frm.productname.value = "";
+            frm.price.value = 0;
+            frm.quantity.value = 0;
+            frm.url.value = "";
+            addProductForm.style.display = "none";
+        }
+
+        function updateTotal(updatedProduct) {
+            if (!isNaN(updatedProduct.value)) {
+                total = total + (updatedProduct.value - productList[updatedProduct.id].quantity) * productList[updatedProduct.id].price
+                productList[updatedProduct.id].quantity = updatedProduct.value;
+
+                displayTempTotal.textContent = total;
+                displayTotal.textContent = total;
+            }
+        }
+    </script>
+</body>
+
+</html>

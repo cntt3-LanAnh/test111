@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="bai1.js"></script>
+    <style>
+        
+    </style>
+  </head>
+  <body>
+      <!--Form nhap du lieu  -->
+    <div>
+        <h1> Quan ly phong</h1>
+    <button  class="btn btn-danger" onclick="openForm()"> <i class="fa fa-plus" aria-hidden="true"></i>Them moi phong</button>
+    <hr>
+    <div>
+        <form  id="frm" style="display:none">
+            <div>
+                Ten phong <br>
+                <input type="text" name="name" id="tenPhong" placeholder="Ten phong">
+            </div>
+            <div>
+                Mo ta<br>
+                <input type="text" name="moTa" id="moTa" placeholder="Mo ta">
+            </div>
+            <div>
+                Gia <br>
+                <input type="text" name="gia" id="gia">
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Ảnh:</label>
+                <div class="col-sm-9">
+                  <input type="file" id="anh" name="anh" class="form-control-plaintext" onchange="getURLImg(this)">
+                </div>
+                <a id="preview" target="_blank" class="form-control-plaintext">
+                  <img id="blah" src="#" alt="your image" style="display: none; float:right"  />
+                </a>
+              </div>
+            <div>
+                <input type="button" value="Them" class="btn btn-outline-success" onclick="add(tenPhong.value,moTa.value,gia.value,anh.files[0])">
+                <input type="button" value="Đong" class="btn btn-outline-dark" onclick="closeForm()">  
+            </div>
+        </form>
+        
+    </div>
+    <!--  Xuat du lieu -->
+    <div>
+        <div>
+            <h1>Book di nao. Mai ben nhau ban nhe</h1>
+            <p>Top noi nao sang chanh don he  da san san tren travelcon . Book ngay di nao</p>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-4" id ="show" onload="show()">
+                        <!-- list danh sach phong -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

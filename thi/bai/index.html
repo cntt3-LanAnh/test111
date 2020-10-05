@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <link rel="stylesheet" href="./grid.css">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        #women-container,
+        #men-container {
+            overflow: hidden;
+        }
+
+        .item-buy {
+            outline: none;
+        }
+    </style>
+
+    <script src="./index.js" language="javascript"></script>
+</head>
+
+<body>
+
+  
+
+
+    <content>
+        <div class="intro">
+            <form>
+                <div class="form-group">
+                    <label>Fullname_Customer</label>
+
+                    <input class="form-control" type="text" name="Fullname_cus" id="fn_c"
+                        onkeypress="return isCharacterKey(event)" required>
+                </div>
+                <div class="form-group">
+                    <label>Id_Pro</label>
+
+                    <input class="form-control" type="text" name="Id_Pro" id="id" onkeypress="return isNumberKey(event)"
+                        required>
+                </div>
+                <div class="form-group">
+
+                    <label>Name_Pro</label>
+
+                    <input class="form-control" type="text" name="Name_Pro" id="n_p" required>
+                </div>
+                <div class="form-group">
+                    <label>Quantity_Pro</label>
+
+                    <input class="form-control" type="text" name="Quantity_Pro" id="q_p"
+                        onkeypress="return isNumberKey(event)" required>
+                </div>
+                <div class="form-group">
+                    <label>Price_Pro</label>
+
+                    <input class="form-control" type="text" name="Price_Pro" id="price"
+                        onkeypress="return isCharacterKey(event)" required>
+                </div>
+                <div class="form-group">
+                    <label>Image_Pro</label>
+
+                    <input class="form-control" type="file" name="Image_Pro" onchange="chonFile(this)" id="image" required>
+
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn1" onclick="saveData()" name="ok" value="Save" id="btn1" />
+                    <input type="button" class="btn2" onclick="showData()" name="show" value="Show" id="btn2" />
+                    <input type="button" class="btn3" onclick="reset()" name="reset" value="Reset" id="btn3" />
+                </div>
+            </form>
+
+
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Auto_increment</th>
+                        <th>Fullname_customer</th>
+                        <th>Id_Pro</th>
+                        <th>Name_Pro</th>
+                        <th>Quantity_Pro</th>
+                        <th>Price_Pro</th>
+                        <th>Total</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </content>
+
+
+
+
+</body>
+
+
+</html>
